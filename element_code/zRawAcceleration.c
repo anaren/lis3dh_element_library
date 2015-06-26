@@ -1,0 +1,1 @@
+	return LIS3DH_GetZaxisRaw();

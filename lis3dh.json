@@ -1,0 +1,62 @@
+{
+	"type": "Embedded Library",
+	"label": "LIS3DH Driver",
+	"language": {
+		"en": {
+			"label": "LIS3DH Driver"
+		}
+	},
+	"name": "lis3dh",
+	"author": "Anaren Inc.",
+	"signature": "",
+	"version": "1.0.0",
+	"description":"The LIS3DH is an ultra low-power high performance three axes linear accelerometer belonging to the \u201cnano\u201d family, with digital I2C/SPI serial interface standard output. The device features ultra low-power operational modes that allow advanced power saving and smart embedded functions.\n\nThe LIS3DH has dynamically user selectable full scales of \u00b12g/\u00b14g/\u00b18g/\u00b116g and it is capable of measuring accelerations with output data rates from 1 Hz to 5 kHz. The self-test capability allows the user to check the functioning of the sensor in the final application. The device may be configured to generate interrupt signals by two independent inertial wake-up/free-fall events as well as by the position of the device itself. Thresholds and timing of interrupt generators are programmable by the end user on the fly. The LIS3DH has an integrated 32-level first in, first out (FIFO) buffer allowing the user to store data for host processor intervention reduction. The LIS3DH is available in small thin plastic land grid array package (LGA) and it is guaranteed to operate over an extended temperature range from -40 \u00b0C to +85 \u00b0C.",
+	
+	"code": {
+		"global" : "",
+		"setup" : "" 
+	},
+	
+	"elements": {
+		"xRawAcceleration": {
+			"label": "X Raw Acceleration",
+			"language": {
+				"en": {
+					"label": "X Raw Acceleration"
+				}
+			},
+			"returnType":"int",
+			"inputType":"void",
+			"icon": null,
+			"code": ""
+		},
+		
+		"yRawAcceleration": {
+			"label": "Y Raw Acceleration",
+			"language": {
+				"en": {
+					"label": "Y Raw Acceleration"
+				}
+			},
+			"returnType":"int",
+			"inputType":"void",
+			"icon": null,
+			"code": ""
+		},
+		
+		"zRawAcceleration": {
+			"label": "Z Raw Acceleration",
+			"language": {
+				"en": {
+					"label": "Z Raw Acceleration"
+				}
+			},
+			"returnType":"int",
+			"inputType":"void",
+			"icon": null,
+			"code": ""
+		}
+	},
+	
+	"categories":["Accelerometer", "Sensor"]
+}
