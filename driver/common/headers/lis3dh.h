@@ -35,13 +35,10 @@
 
 #include "lis3dh_config.h"
 #include "../spi/spi.h"
-#include "types.h"
-
-#define uint8 UINT8
-#define uint16 UINT16
+#include <stdint.h>
 
 #ifndef bool
-#define bool uint8
+#define bool uint8_t
 #endif
 
 #ifndef true
@@ -133,25 +130,25 @@ read-only registers may result in undesireable behavior.
 @param addr device register address
 @param data data to be written to the specified register address
 */
-void LIS3DH_WriteReg(uint8 addr, uint8 data);
+void LIS3DH_WriteReg(uint8_t addr, uint8_t data);
 
 /**
 Read an 8-bit value from a device register.
 @param addr device register address
 @return data read from the specified register address
 */
-uint8 LIS3DH_ReadReg(uint8 addr);
+uint8_t LIS3DH_ReadReg(uint8_t addr);
 
 /**
 Read WHO_AM_I identification register.
 @return contents of WHO_AM_I register.  Value always = 0x33 (ascii '3').
 */
-uint8 LIS3DH_GetWhoAmIReg(void);
+uint8_t LIS3DH_GetWhoAmIReg(void);
 
 
-int16 LIS3DH_GetXaxisRaw(void);
-int16 LIS3DH_GetYaxisRaw(void);
-int16 LIS3DH_GetZaxisRaw(void);
+int16_t LIS3DH_GetXaxisRaw(void);
+int16_t LIS3DH_GetYaxisRaw(void);
+int16_t LIS3DH_GetZaxisRaw(void);
 
 float LIS3DH_GetXaxis(void);
 float LIS3DH_GetYaxis(void);
