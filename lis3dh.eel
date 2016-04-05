@@ -68,6 +68,9 @@
             "label": "LIS3DH Driver"
         }
     },
+    "links": {
+        "Wiki Page": "https://atmosphere.anaren.com/wiki/LIS3DH_Driver"
+    },
     "name": "lis3dh",
     "signature": "",
     "type": "Embedded Library",
