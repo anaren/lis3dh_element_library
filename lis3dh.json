@@ -62,5 +62,19 @@
 	
 	"links":{
 		"Wiki Page":"https://atmosphere.anaren.com/wiki/LIS3DH_Driver"
+	},
+
+		"config":{
+		"file":"lis3dh_config.h",
+		
+		"values":{
+			"chip select":{
+				"name":"Chip Select Pin",
+				"input":"TextField",
+				"prefix":"#define LIS3DH_CSPIN ",
+				"value":"0",
+				"regex":"^[0-9]*$"
+			}
+		}
 	}
 }

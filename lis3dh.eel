@@ -10,6 +10,18 @@
         "interval": " \n",
         "setup": "\tLIS3DH_Init(); \n"
     },
+    "config": {
+        "file": "lis3dh_config.h",
+        "values": {
+            "chip select": {
+                "input": "TextField",
+                "name": "Chip Select Pin",
+                "prefix": "#define LIS3DH_CSPIN ",
+                "regex": "^[0-9]*$",
+                "value": "0"
+            }
+        }
+    },
     "description": "The LIS3DH is an ultra low-power high performance three axes linear accelerometer belonging to the \u201cnano\u201d family, with digital I2C/SPI serial interface standard output. The device features ultra low-power operational modes that allow advanced power saving and smart embedded functions.\n\nThe LIS3DH has dynamically user selectable full scales of \u00b12g/\u00b14g/\u00b18g/\u00b116g and it is capable of measuring accelerations with output data rates from 1 Hz to 5 kHz. The self-test capability allows the user to check the functioning of the sensor in the final application. The device may be configured to generate interrupt signals by two independent inertial wake-up/free-fall events as well as by the position of the device itself. Thresholds and timing of interrupt generators are programmable by the end user on the fly. The LIS3DH has an integrated 32-level first in, first out (FIFO) buffer allowing the user to store data for host processor intervention reduction. The LIS3DH is available in small thin plastic land grid array package (LGA) and it is guaranteed to operate over an extended temperature range from -40 \u00b0C to +85 \u00b0C.",
     "elements": {
         "xRawAcceleration": {
@@ -57,9 +69,7 @@
             "objects": {
                 "lis3dh_common.c": "/**\n *  ----------------------------------------------------------------------------\n *  Copyright (c) 2014, Anaren Microwave, Inc.\n *\n *  For more information on licensing, please see Anaren Microwave, Inc's\n *  end user software licensing agreement: EULA.txt.\n *\n *  ----------------------------------------------------------------------------\n *\n *  lis3dh.c - driver interface for the ST Microelectronics LIS3DH 3-Axis MEMS\n *  accelerometer.\n *\n *  @version    1.0.00\n *  @date       30 Sep 2014\n *  @author     Anaren, air@anaren.com\n *\n *  assumptions\n *  ===========\n *  - The SPI driver provides the proper signaling sequences for read & write\n *    operations.\n *  - The SPI driver meets the timing requirements specified in the LIS3DH\n *    datasheet.\n *\n *  file dependency\n *  ===============\n *  spi.h : defines the SPI read & write interfaces.\n *\n *  revision history\n *  ================\n *  ver 1.0.00 : 30 Sep 2014\n *  - initial release\n */\n\n#include \"lis3dh.h\"\n\n\n// -----------------------------------------------------------------------------\n/**\n *  Global data\n */\n\n// -----------------------------------------------------------------------------\n/**\n *  Private interface\n */\n\n// -----------------------------------------------------------------------------\n/**\n *  Public interface\n */\n\nvoid LIS3DH_Init()\n{\n\tAIR_SPI_SetCSPin(LIS3DH_CSPIN);\n\tLIS3DH_WriteReg(0x20, 0x77);\n}\n\nvoid LIS3DH_WriteReg(uint8_t addr, uint8_t data)\n{\n  uint8_t writeBytes[2];\n\n  writeBytes[0] = addr;\n  writeBytes[1] = data;\n  AIR_SPI_Write(LIS3DH_CSPIN, writeBytes, 2);\n}\n\nuint8_t LIS3DH_ReadReg(uint8_t addr)\n{\n  uint8_t writeBytes[2];\n  uint8_t readBytes[2];\n\n  writeBytes[0] = addr | 0x80;  // set msb high for read operations\n  writeBytes[1] = 0xFF;         // dummy byte\n\n  AIR_SPI_Exchange(LIS3DH_CSPIN, readBytes, writeBytes, 2);\n  return readBytes[1];\n}\n\n\nuint8_t LIS3DH_GetWhoAmIReg(void)\n{\n  return LIS3DH_ReadReg(LIS3DH_WHO_AM_I_REG_ADDR);\n}\n\nint16_t LIS3DH_GetXaxisRaw(void)\n{\n  uint16_t returnData = (uint16_t)LIS3DH_ReadReg(LIS3DH_OUT_X_H_REG_ADDR) << 8;\n  \n  returnData |= LIS3DH_ReadReg(LIS3DH_OUT_X_L_REG_ADDR);\n  \n  return (int16_t)returnData;\n}\n\nint16_t LIS3DH_GetYaxisRaw(void)\n{\n  uint16_t returnData = (uint16_t)LIS3DH_ReadReg(LIS3DH_OUT_Y_H_REG_ADDR) << 8;\n  \n  returnData |= LIS3DH_ReadReg(LIS3DH_OUT_Y_L_REG_ADDR);\n  \n  return (int16_t)returnData;\n}\n\nint16_t LIS3DH_GetZaxisRaw(void)\n{\n  uint16_t returnData = (uint16_t)LIS3DH_ReadReg(LIS3DH_OUT_Z_H_REG_ADDR) << 8;\n  \n  returnData |= LIS3DH_ReadReg(LIS3DH_OUT_Z_L_REG_ADDR);\n  \n  return (int16_t)returnData;\n}\n\nfloat LIS3DH_GetXaxis(void)\n{\n  return (float)LIS3DH_GetXaxisRaw() / 16384.0;\n}\n\nfloat LIS3DH_GetYaxis(void)\n{\n  return (float)LIS3DH_GetYaxisRaw() / 16384.0;\n}\n\nfloat LIS3DH_GetZaxis(void)\n{\n  return (float)LIS3DH_GetZaxisRaw() / 16384.0;\n}\n"
             },
-            "other": {
-                "lis3dh_config.h": "#define LIS3DH_CSPIN 0x03 \n"
-            }
+            "other": {}
         }
     },
     "label": "LIS3DH Driver",

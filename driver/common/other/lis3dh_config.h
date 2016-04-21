@@ -1,1 +1,0 @@
-#define LIS3DH_CSPIN 0x03 
