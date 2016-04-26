@@ -90,7 +90,8 @@
 #define LIS3DH_TIME_LIMIT_REG_ADDR      0x3B  // Time Limit
 #define LIS3DH_TIME_LATENCY_REG_ADDR    0x3C  // Time Latency
 #define LIS3DH_TIME_WINDOW_REG_ADDR     0x3D  // Time Window
-
+#define LIS3DH_SPI_MODE 0
+#define LIS3DH_MSB_FIRST 1
 /**
  *  eLIS3DHOperatingMode - type indicating the operating mode of the
  *  LIS3DH device.  The LIS3DH offers two modes; Normal and Low-power.  Refer
