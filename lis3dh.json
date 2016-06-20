@@ -72,7 +72,7 @@
 				"name":"Chip Select Pin",
 				"input":"TextField",
 				"prefix":"#define LIS3DH_CSPIN ",
-				"value":"0",
+				"value":"D2",
 				"regex":"^[0-9]*$|^D[0-9]*$|^A[0-9]*$"
 			}
 		}
