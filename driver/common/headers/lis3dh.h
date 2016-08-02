@@ -33,6 +33,7 @@
  *  Defines, enumerations, and structure definitions
  */
 
+#include "pin_mapping.h"
 #include "lis3dh_config.h"
 #include "../spi/spi.h"
 #include <stdint.h>
