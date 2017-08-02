@@ -64,7 +64,7 @@
 		"Wiki Page":"https://atmosphere.anaren.com/wiki/LIS3DH_Driver"
 	},
 
-		"config":{
+	"config":{
 		"file":"lis3dh_config.h",
 		
 		"values":{
