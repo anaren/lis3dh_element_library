@@ -68,7 +68,7 @@
 		"file":"lis3dh_config.h",
 		
 		"values":{
-			"chip select":{
+			"chip_select":{
 				"name":"Chip Select Pin",
 				"input":"TextField",
 				"prefix":"#define LIS3DH_CSPIN ",
